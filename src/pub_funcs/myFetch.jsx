@@ -1,10 +1,10 @@
-import fetch from 'fetch';
+import { fetch } from 'whatwg-fetch';
 
-function myFetch(url, data, method='GET') {
-	return fetch(url, {
+function myFetch(url, data, cb, method='GET') {
+	fetch(url, {
 		body: JSON.stringify(data),
 		method: method
-	}).then(response => response.json());
+	}).then(response => cb(response));
 }
 
 export default myFetch;

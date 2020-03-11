@@ -216,24 +216,24 @@ class RegisterForm extends Component {
 		const _form = this.state.formPrototype[`${formType}Form`];
 		const _select = this.state.selectPrototype[`${formType}Select`];
 		let _data = {};
-		_data.loginType = formType;
-		_form.forEach((value, key) => {
-			const { dataName, inputValue, isTest } = value;
-			if (!isTest) {
-				isRegister = false;
-				this.setState({
-					errorMessage: '输入有误，请检查后再提交'
-				})
-				return;
-			}
-			if (key === _form.length - 1) {
-				isRegister = true;
-			}
-			_data[dataName] = inputValue;
+
+		// 判断是否可以注册
+		isRegister = _form.every((value) => {
+			const { isTest } = value;
+			return isTest;
 		})
 		if (!isRegister) {
-			return 
+			this.setState({
+				errorMessage: '输入有误，请检查后再提交'
+			})
+			return; 
 		}
+		// 如可以注册写入数据
+		_data.loginType = formType;
+		_form.forEach((value, key) => {
+			const { dataName, inputValue } = value;
+			_data[dataName] = inputValue;
+		})
 		_select.forEach((value, key) => {
 			const { dataName, selectValue } = value;
 			_data[dataName] = selectValue;
@@ -243,9 +243,9 @@ class RegisterForm extends Component {
 			data: _data,
 			isCircle: true,
 		})
-		myFetch(_url, _data, 'POST').then((data) => {
+		myFetch(_url, _data, (data) => {
 			console.log(data);
-		})
+		}, 'POST')
 		console.log(_data);
 	}
 

@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Login from '../pages/Login/index.jsx';
 import Register from '../pages/Register/index.jsx';
 import User from '../pages/User/index.jsx';
+import Doctor from '../pages/Doctor/index.jsx';
 
 import Header from '../components/Header/index.jsx';
 
@@ -103,6 +104,12 @@ class RouteMap extends Component {
 						<Route path="/user" render={props => (
 							isLogin ?
 							<User />
+							:
+							<Redirect to="/login"/>
+						)} />
+						<Route path="/doctor" render={props => (
+							isLogin ?
+							<Doctor />
 							:
 							<Redirect to="/login"/>
 						)} />

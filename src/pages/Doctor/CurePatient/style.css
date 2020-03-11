@@ -1,0 +1,25 @@
+.doctor-curePatient-box {
+	margin: 0 auto;
+  padding: 10px 100px;
+}
+
+.doctor-curePatient-h2 {
+	letter-spacing: 2px;
+}
+
+.doctor-curePatient-info {
+
+}
+
+.doctor-curePatient-info-item {
+	height: 30px;
+}
+
+.doctor-curePatient-info-item span {
+	font-size: 18px;
+}
+
+.doctor-curePatient-info-item-key {
+	display: inline-block;
+	width: 100px;
+}
