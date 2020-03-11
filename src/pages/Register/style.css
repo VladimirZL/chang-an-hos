@@ -1,0 +1,47 @@
+#register {
+	width: 100%;
+	padding-top: 40px;
+}
+
+.register-window {
+}
+
+.register-choose {
+	display: flex;
+	width: 400px;
+	height: 100px;
+	margin: 0 auto;
+	justify-content: space-around;
+}
+
+.register-choose button {
+	/*display: inline-block;*/
+	width: 80px;
+	height: 40px;
+	border-radius: 3px;
+	text-indent: 4px;
+	cursor: pointer;
+	color: rgba(0,0,0,0.65);
+	letter-spacing: 4px;
+	transition: all 0.3s;
+	border: 1px solid #1890ff;
+	background-color: white;
+}
+
+.register-choose-user-this button {
+	color: white;
+	background-color: #1890ff;
+}
+
+.register-choose button:hover {
+	color: white;
+	background-color: #1890ff;
+}
+
+.register-box {
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	margin: 0 auto;
+}
+

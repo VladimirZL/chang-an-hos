@@ -1,0 +1,58 @@
+.user-orderInHos {
+	width: 100%;
+	/*background-color: black;*/
+}
+
+.user-orderInHos-box {
+	margin: 0 auto;
+	padding: 10px 100px;
+}
+
+.user-orderInHos-chooseDepartment {
+	display: flex;
+}
+
+.user-orderInHos-chooseItem {
+	height: 40px;
+	width: 80px;
+	box-sizing: border-box;
+	text-align: center;
+	border: 1px solid #1890ff;
+	border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.3s;
+	margin-right: 20px;
+}
+
+.user-orderInHos-chooseItem:hover {
+	background-color: #1890ff;
+}
+
+.user-orderInHos-chooseItem:hover span {
+	color: white;
+}
+
+.user-orderInHos-chooseItem span {
+	letter-spacing: 2px;
+	transition: all 0.3s;
+	color: #1890ff;
+}
+
+.user-orderInHos-chooseItem_choose {
+	background-color: #1890ff;
+}
+
+.user-orderInHos-chooseItem_choose span {
+	color: white;
+}
+
+.user-orderInHos-chooseDoctor {
+	margin-top: 30px;
+}
+
+.user-orderInHos-chooseDate {
+	margin-top: 30px;
+}

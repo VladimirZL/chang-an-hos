@@ -1,0 +1,50 @@
+.user-orderExam {
+	width: 100%;
+	/*background-color: black;*/
+}
+
+.user-orderExam-box {
+	margin: 0 auto;
+	padding: 10px 100px;
+}
+
+.user-orderExam-chooseType {
+	display: flex;
+}
+
+.user-orderExam-chooseItem {
+	height: 40px;
+	width: 80px;
+	box-sizing: border-box;
+	text-align: center;
+	border: 1px solid #1890ff;
+	border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.3s;
+	margin-right: 20px;
+}
+
+.user-orderExam-chooseItem:hover {
+	background-color: #1890ff;
+}
+
+.user-orderExam-chooseItem:hover span {
+	color: white;
+}
+
+.user-orderExam-chooseItem span {
+	letter-spacing: 2px;
+	transition: all 0.3s;
+	color: #1890ff;
+}
+
+.user-orderExam-chooseItem_choose {
+	background-color: #1890ff;
+}
+
+.user-orderExam-chooseItem_choose span {
+	color: white;
+}

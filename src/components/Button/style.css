@@ -1,0 +1,46 @@
+.my-button {
+	width: 80px;
+	height: 40px;
+	margin-top: 30px;
+
+}
+
+.my-button-loading {
+	width: 20px;
+	height: 20px;
+	box-sizing: border-box;
+	border-radius: 100%;
+	border: 2px solid white;
+	border-top-color: #1890ff;
+	/*background-color: black;*/
+	position: absolute;
+	margin: 10px 30px;
+	animation: circle 0.7s linear infinite;
+}
+
+.my-button-text {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	border: 1px solid #1890ff;
+	background-color: white;
+	border-radius: 3px;
+	color: #1890ff;
+	letter-spacing: 2px;
+	transition: all 0.3s;
+}
+
+.my-button-text:hover {
+	background-color: #1890ff;
+	color: white;
+}
+
+.my-button-text-loading {
+	background-color: #1890ff;
+	color: #1890ff;
+	cursor: not-allowed;
+}
+
+.my-button-text-loading:hover {
+	color: #1890ff;
+}

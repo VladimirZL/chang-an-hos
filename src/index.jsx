@@ -1,12 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import './index.less';
 
-import Register from './pages/Register/index.jsx';
+import RouteMap from './router/router.jsx';
+
+import 'antd/dist/antd.css'
+import './index.css';
+
 
 render (
-	<div>
-		<Register />
-	</div>,
+	<RouteMap />,
 	document.getElementById('root')
 )

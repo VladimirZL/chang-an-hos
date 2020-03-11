@@ -1,0 +1,70 @@
+
+.form-content {
+	width: 100%;
+	border: 1px solid black;
+	padding: 20px 0;
+}
+
+.form-content-input-box {
+	width: 200px;
+	margin: 20px auto;
+}
+
+.form-content-select-box {
+	width: 200px;
+	margin: 20px auto;
+}
+
+.form-content-message {
+	width: 200px;
+	box-sizing: border-box;
+	padding: 0 10px;
+	margin: 0px auto 25px auto;
+}
+
+.form-content-message span {
+	color: #ff4d4f;
+}
+
+.form-content-button-box {
+	width: 200px;
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+.form-content-circle {
+	width: 20px;
+	height: 20px;
+	/*display: none;*/
+	border-radius: 100%;
+	border: 2px solid white;
+	border-top-color: #1890ff;
+	position: absolute;
+	margin-top: 8px;
+	/*transition: all 0.3s;*/
+	animation: circle 0.7s linear infinite;
+}
+
+.form-content-button-box-request {
+	color: #1890ff !important;
+	background-color: #1890ff !important;
+}
+
+.form-content-button-box button {
+	width: 80px;
+	height: 40px;
+	border-radius: 3px;
+	text-indent: 4px;
+	color: rgba(0,0,0,0.65);
+	letter-spacing: 4px;
+	transition: all 0.3s;
+	border: 1px solid #1890ff;
+	background-color: white;
+}
+
+.form-content-button-box button:hover {
+	cursor: pointer;
+	color: white;
+	background-color: #1890ff;
+}
