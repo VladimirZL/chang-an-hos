@@ -60,7 +60,7 @@ class Login extends Component {
 				errorMessage: '',
 			});
 			myFetch(loginUrl, _data, (data) => {
-				const { success, errCode, sessionID }
+				const { success, errCode, sessionID } = data;
 				if (success === 1) {
 					console.log(data);
 					localStorage.setItem('isLogin', true);
