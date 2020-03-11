@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import { Input } from 'antd';
 import './style.css';
 
-// import OrderInHos from './OrderInHos/index.jsx';
-// import OrderExam from './OrderExam/index.jsx';
-// import OrderRegister from './OrderRegister/index.jsx';
+import Button from '../../../components/Button/index.jsx';
+
+
+const { TextArea } = Input;
 
 
 class CurePatient extends Component {
@@ -31,7 +33,8 @@ class CurePatient extends Component {
 				infoText: '保险类型',
 				infoKey:'insurance',
 				value: '社会保险',
-			}]
+			}],
+			isLoading: false
 		}
 	}
 
@@ -39,8 +42,15 @@ class CurePatient extends Component {
 
 	}
 
+	handleSubmit () {
+		console.log(this.state.data);
+		this.setState({
+			isLoading: true
+		})
+	}
+
 	render () {
-		const { infoList } = this.state;
+		const { infoList, isLoading } = this.state;
 		return (
 			<div className="doctor-curePatient">
 				<div className="doctor-curePatient-box">
@@ -57,8 +67,19 @@ class CurePatient extends Component {
 							})
 						}
 						<div className="doctor-curePatient-result">
-							
+							<TextArea 
+								autoSize={{ minRows: 3, maxRows: 3 }}
+								placeholder="诊断结果" />
 						</div>
+						<div className="doctor-curePatient-result">
+							<TextArea 
+								autoSize={{ minRows: 3, maxRows: 3 }}
+								placeholder="处方意见" />
+						</div>
+						<Button 
+							onClick={() => {this.handleSubmit()}}
+							isLoading={isLoading} 
+							content="提交" />
 					</div>
 				</div>
 			</div>

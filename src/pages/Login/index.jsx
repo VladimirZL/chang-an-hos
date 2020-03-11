@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import './style.css';
 import classnames from 'classnames';
+
+import myFetch from '../../pub_funcs/myFetch.jsx'
 import Input from '../../components/Input/index.jsx';
+
+const loginUrl = 'http://localhost:8080/springMvcDemo1/user/login';
 
 class Login extends Component {
 
@@ -44,15 +48,32 @@ class Login extends Component {
 	handleClick () {
 		const { loginForm, loginType } = this.state;
 		const [phoneInput, passInput] = loginForm;
+		let _data = {};
 		if (phoneInput.inputValue !== '' && passInput.inputValue !== '' && loginType !== '') {
-			console.log(phoneInput.inputValue, passInput.inputValue, loginType);
-			localStorage.setItem('isLogin', true);
-			localStorage.setItem('loginType', loginType);
+			_data = {
+				account: phoneInput.inputValue,
+				password: passInput.inputValue,
+				type: loginType
+			};
 			this.setState({
 				isCircle: true,
 				errorMessage: '',
 			});
-			window.location.href = `${window.location.origin}/${loginType}`;
+			myFetch(loginUrl, _data, (data) => {
+				const { success, errCode, sessionID }
+				if (success === 1) {
+					console.log(data);
+					localStorage.setItem('isLogin', true);
+					localStorage.setItem('loginType', loginType);
+					localStorage.setItem('sessionID', sessionID);
+					window.location.href = `${window.location.origin}/${loginType}`;
+				} else {
+					this.setState({
+						isCircle: false,
+						errorMessage: errCode
+					})
+				}
+			}, 'POST');
 		} else if (phoneInput.inputValue === '') {
 			this.setState({
 				errorMessage: '手机号不能为空'

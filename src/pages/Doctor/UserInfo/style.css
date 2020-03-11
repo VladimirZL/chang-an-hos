@@ -1,0 +1,25 @@
+.doctor-doctorInfo-box {
+	margin: 0 auto;
+  padding: 10px 100px;
+}
+
+.doctor-doctorInfo-h2 {
+	letter-spacing: 2px;
+}
+
+.doctor-doctorInfo-info {
+
+}
+
+.doctor-doctorInfo-info-item {
+	height: 30px;
+}
+
+.doctor-doctorInfo-info-item span {
+	font-size: 18px;
+}
+
+.doctor-doctorInfo-info-item-key {
+	display: inline-block;
+	width: 100px;
+}
