@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import classnames from 'classnames';
-import { Select, DatePicker, button  } from 'antd';
+import { Select, DatePicker  } from 'antd';
+import moment from 'moment';
 
+import { myFetchGet } from '../../../pub_funcs/myFetch.jsx'
 import Button from '../../../components/Button/index.jsx';
 import './style.css';
+
+const orderInHosURL = 'http://localhost:8080/springMvcDemo1/booking/regist/sickbed'
 
 class OrderInHos extends Component {
 
@@ -20,13 +24,13 @@ class OrderInHos extends Component {
 			}],
 			doctorList: [{
 				name: '张三',
-				value: '张三'
+				value: '0000000A'
 			}, {
 				name: '李四',
-				value: '李四'
+				value: '0000000B'
 			}, {
 				name: '王先生',
-				value: '王先生'
+				value: '0000000C'
 			}],
 			isLoading: false,
 			data: {},
@@ -40,22 +44,40 @@ class OrderInHos extends Component {
 	}
 
 	handleSelectChange (event) {
-		let _data = {
-			doctor: event
-		}
+		let _data = this.state.data;
+		_data.docUIDstr = event;
 		this.setState({
 			data: _data,
 		})
 	}
 
 	handleDateChange (event) {
-		console.log(event);
+		let _data = this.state.data;
+		let _date = moment(event).format('YYYY-MM-DD');
+		let _dateArr = _date.split('-');
+		_data.yearString = _dateArr[0];
+		_data.monthString = _dateArr[1];
+		_data.dayString = _dateArr[2];
+		this.setState({
+			data: _data,
+		})
 	}
 
 	handleSubmit () {
-		console.log(this.state.data);
+		let _session = localStorage.getItem('sessionID');
+		let _data = this.state.data;
+		_data.sidStr = _session;
 		this.setState({
+			data: _data,
 			isLoading: true
+		});
+		myFetchGet(orderInHosURL, _data, (data) => {
+			const { success, errCode } = data;
+			if (success === 1) {
+				alert('预约成功');
+			} else {
+				alert('预约失败');
+			}
 		})
 	}
 
@@ -94,7 +116,9 @@ class OrderInHos extends Component {
 				    </Select>
 					</div>
 					<div className="user-orderInHos-chooseDate">
-						<DatePicker onChange={(event) => {this.handleDateChange(event)}} />
+						<DatePicker
+							format='YYYY-MM-DD' 
+							onChange={(event) => {this.handleDateChange(event)}} />
 					</div>
 					<Button
 						onClick={() => {this.handleSubmit()}}

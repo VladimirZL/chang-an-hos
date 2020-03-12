@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { Select } from 'antd';
 import './style.css';
 
-import myFetch from '../../../../pub_funcs/myFetch.jsx'
+import { myFetchPost } from '../../../../pub_funcs/myFetch.jsx'
 import Input from '../../../../components/Input/index.jsx';
 
 
@@ -243,7 +243,7 @@ class RegisterForm extends Component {
 			data: _data,
 			isCircle: true,
 		})
-		myFetch(_url, _data, (data) => {
+		myFetchPost(_url, _data, (data) => {
 			console.log(data);
 		}, 'POST')
 		console.log(_data);

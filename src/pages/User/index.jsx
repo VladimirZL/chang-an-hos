@@ -5,6 +5,7 @@ import './style.css';
 import OrderInHos from './OrderInHos/index.jsx';
 import OrderExam from './OrderExam/index.jsx';
 import OrderRegister from './OrderRegister/index.jsx';
+import DoctourMessage from './DoctourMessage/index.jsx';
 
 
 class User extends Component {
@@ -12,6 +13,7 @@ class User extends Component {
 		return (
 			<div id="user">
 				<Route path="/user/orderInHos" component={OrderInHos} />
+				<Route path="/user/doctourMessage" component={DoctourMessage} />
 				<Route path="/user/orderExam" component={OrderExam} />
 				<Route path="/user/orderRegister" component={OrderRegister} />
 			</div>

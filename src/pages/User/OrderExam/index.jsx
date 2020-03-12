@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import classnames from 'classnames';
+import { DatePicker } from 'antd';
+import moment from 'moment';
 
+import { myFetchGet } from '../../../pub_funcs/myFetch.jsx'
 import Button from '../../../components/Button/index.jsx';
 import './style.css';
+
+const orderExamURL = 'http://localhost:8080/springMvcDemo1/booking/regist/healthCheck';
 
 class OrderExam extends Component {
 
@@ -12,33 +17,58 @@ class OrderExam extends Component {
 			thisTypeItme: 0,
 			examList: [{
 				name: '入职体检',
+				value: 1,
 			}, {
-				name: '全身体检'
+				name: '全身体检',
+				value: 2,
 			}, {
-				name: '孕前体检'
+				name: '孕前体检',
+				value: 3,
 			}],
 			isLoading: false,
 			data: {
-				orderExamType: '入职体检'
+				checkTypeStr: 1
 			},
 		}
 	}
 
 	handleClick (key) {
+		let _data = this.state.data;
 		const { examList } = this.state;
-		const _data = {
-			orderExamType: examList[key].name
-		}
+		_data.checkTypeStr = examList[key].value;
 		this.setState({
 			thisTypeItme: key,
 			data: _data,
 		});
 	}
 
-	handleSubmit () {
-		console.log(this.state.data);
+	handleDateChange (event) {
+		let _data = this.state.data;
+		let _date = moment(event).format('YYYY-MM-DD');
+		let _dateArr = _date.split('-');
+		_data.yearString = _dateArr[0];
+		_data.monthString = _dateArr[1];
+		_data.dayString = _dateArr[2];
 		this.setState({
+			data: _data,
+		})
+	}
+
+	handleSubmit () {
+		let _session = localStorage.getItem('sessionID');
+		let _data = this.state.data;
+		_data.sidStr = _session;
+		this.setState({
+			data: _data,
 			isLoading: true
+		});
+		myFetchGet(orderExamURL, _data, (data) => {
+			const { success, errCode } = data;
+			if (success === 1) {
+				alert('预约成功');
+			} else {
+				alert('预约失败');
+			}
 		})
 	}
 
@@ -60,6 +90,11 @@ class OrderExam extends Component {
 								)
 							})
 						}
+					</div>
+					<div className="user-orderExam-chooseDate">
+						<DatePicker
+							format='YYYY-MM-DD' 
+							onChange={(event) => {this.handleDateChange(event)}} />
 					</div>
 					<Button
 						onClick={() => {this.handleSubmit()}}
