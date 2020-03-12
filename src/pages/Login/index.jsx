@@ -63,7 +63,6 @@ class Login extends Component {
 				console.log(data);
 				const { success, errCode, sessionID } = data;
 				if (success === 1) {
-					// console.log(data);
 					localStorage.setItem('isLogin', true);
 					localStorage.setItem('loginType', loginType);
 					localStorage.setItem('sessionID', sessionID);

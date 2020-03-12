@@ -1,11 +1,15 @@
 import { fetch } from 'whatwg-fetch';
 
 export function myFetchPost(url, data, cb, method='POST') {
-		console.log(JSON.stringify(data), method);
+		// console.log(JSON.stringify(data), method);
 		fetch(url, {
 			body: JSON.stringify(data),
 			method: method
-		}).then(response => cb(response));
+		}).then(response => {
+			const { status } = response;
+			if (status === 200) 
+				return response.json();
+		}).then(data => cb(data));
 	}
 
 export function myFetchGet(url, data, cb, method='GET') {
@@ -18,6 +22,10 @@ export function myFetchGet(url, data, cb, method='GET') {
 		// console.log(JSON.stringify(data), method);
 		fetch(_url, {
 			method: method
-		}).then(response => cb(response));
+		}).then(response => {
+			const { status } = response;
+			if (status === 200) 
+				return response.json();
+		}).then(data => cb(data));
 	}
 
