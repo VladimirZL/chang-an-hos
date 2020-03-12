@@ -250,7 +250,7 @@ class RegisterForm extends Component {
 			const { success, errCode, sessionID } = data;
 			if (success === 1) {
 				localStorage.setItem('isLogin', true);
-				localStorage.setItem('loginType', loginType);
+				localStorage.setItem('loginType', formType);
 				localStorage.setItem('sessionID', sessionID);
 				// window.location.href = `${window.location.origin}/${loginType}`;
 			} else {
