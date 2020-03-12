@@ -63,6 +63,7 @@ class OrderExam extends Component {
 			isLoading: true
 		});
 		myFetchPost(orderExamURL, _data, (data) => {
+			console.log(data);
 			const { success, errCode } = data;
 			if (success === 1) {
 				alert('预约成功');

@@ -59,27 +59,27 @@ class Login extends Component {
 				isCircle: true,
 				errorMessage: '',
 			});
-			myFetchPost(loginUrl, _data, (data) => {
-				console.log(data);
-				const { success, errCode, sessionID } = data;
-				if (success === 1) {
-					localStorage.setItem('isLogin', true);
-					localStorage.setItem('loginType', loginType);
-					localStorage.setItem('sessionID', sessionID);
-					window.location.href = `${window.location.origin}/${loginType}`;
-				} else {
-					console.log('登陆失败');
-					console.log(errCode)
-					this.setState({
-						isCircle: false,
-						errorMessage: errCode
-					})
-				}
-			}, 'POST');
-			// localStorage.setItem('isLogin', true);
-			// localStorage.setItem('loginType', loginType);
-			// localStorage.setItem('sessionID', 'sdasdasd');
-			// window.location.href = `${window.location.origin}/${loginType}`;
+			// myFetchPost(loginUrl, _data, (data) => {
+			// 	console.log(data);
+			// 	const { success, errCode, sessionID } = data;
+			// 	if (success === 1) {
+			// 		localStorage.setItem('isLogin', true);
+			// 		localStorage.setItem('loginType', loginType);
+			// 		localStorage.setItem('sessionID', sessionID);
+			// 		window.location.href = `${window.location.origin}/${loginType}`;
+			// 	} else {
+			// 		console.log('登陆失败');
+			// 		console.log(errCode)
+			// 		this.setState({
+			// 			isCircle: false,
+			// 			errorMessage: errCode
+			// 		})
+			// 	}
+			// }, 'POST');
+			localStorage.setItem('isLogin', true);
+			localStorage.setItem('loginType', loginType);
+			localStorage.setItem('sessionID', 'sdasdasd');
+			window.location.href = `${window.location.origin}/${loginType}`;
 		} else if (phoneInput.inputValue === '') {
 			this.setState({
 				errorMessage: '手机号不能为空'

@@ -123,13 +123,13 @@ class RegisterForm extends Component {
 						value: 'department',
 						name: '请选择科室'
 					}, {
-						value: 'children',
+						value: 1,
 						name: '儿科'
 					}, {
-						value: 'surgery',
+						value: 2,
 						name: '外科'
 					}, {
-						value: 'internal ',
+						value: 3,
 						name: '内科'
 					}]
 				}, {
@@ -245,6 +245,7 @@ class RegisterForm extends Component {
 			data: _data,
 			isCircle: true,
 		})
+		// console.log(_data);
 		myFetchPost(_url, _data, (data) => {
 			console.log(data);
 			const { success, errCode, sessionID } = data;

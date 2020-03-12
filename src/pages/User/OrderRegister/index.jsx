@@ -8,44 +8,67 @@ import Button from '../../../components/Button/index.jsx';
 import './style.css';
 
 const orderRegisterURL = 'http://localhost:8080/springMvcDemo1/booking/regist/doctor';
+const doctourMessageURL = 'http://localhost:8080/springMvcDemo1/work/patient/getDoctorLst';
 
 class OrderRegister extends Component {
 
 	constructor (props) {
 		super(props);
 		this.state = {
-			thisDepartmentItme: 0,
+			thisDepartmentItme: 1,
 			departmentList: [{
 				name: '儿科',
+				type: 1
 			}, {
-				name: '外科'
+				name: '外科',
+				type: 2
 			}, {
-				name: '内科'
+				name: '内科',
+				type: 3				
 			}],
-			doctorList: [{
-				name: '张三',
-				value: '0000000A'
-			}, {
-				name: '李四',
-				value: '0000000B'
-			}, {
-				name: '王先生',
-				value: '0000000C'
-			}],
+			doctorList: [],
 			isLoading: false,
 			data: {},
 		}
+	}
+
+	componentWillMount () {
+		const { thisDepartmentItme } = this.state;
+    this.getDoctorLst(thisDepartmentItme);
+	}
+
+	getDoctorLst (type) {
+		myFetchPost(doctourMessageURL, {departmentIDstr: type}, (data) => {
+      const { success, docInfoLst } = data;
+      if (success === 1) {
+        let _doctorList = [];
+        docInfoLst.forEach((value, key) => {
+          const { name, docUIDstr, title, id } = value;
+          let _info = {
+            name: key,
+            title: title,
+            // docUIDstr: docUIDstr,
+            id: id
+          }
+          _doctorList.push(_info);
+        });
+        this.setState({
+          doctorList: _doctorList
+        });
+      }
+    })
 	}
 
 	handleClick (key) {
 		this.setState({
 			thisDepartmentItme: key,
 		});
+		this.getDoctorLst(key);
 	}
 
 	handleSelectChange (event) {
 		let _data = this.state.data;
-		_data.docUIDstr = event;
+		_data.id = event;
 		this.setState({
 			data: _data,
 		})
@@ -72,6 +95,7 @@ class OrderRegister extends Component {
 			isLoading: true
 		});
 		myFetchPost(orderRegisterURL, _data, (data) => {
+			console.log(data);
 			const { success, errCode } = data;
 			if (success === 1) {
 				alert('预约成功');
@@ -94,8 +118,8 @@ class OrderRegister extends Component {
 								return (
 									<div 
 										key={key}
-										onClick={() => {this.handleClick(key)}}
-										className={classnames(['user-orderRegister-chooseItem', {'user-orderRegister-chooseItem_choose': thisDepartmentItme === key}])}>
+										onClick={() => {this.handleClick(value.type)}}
+										className={classnames(['user-orderRegister-chooseItem', {'user-orderRegister-chooseItem_choose': thisDepartmentItme === value.type}])}>
 										<span>{value.name}</span>
 									</div>
 								)
@@ -110,7 +134,8 @@ class OrderRegister extends Component {
 							<Option value="none">无</Option>
 							{
 								doctorList.map((value, key) => {
-									return <Option key={key} value={value.value}>{value.name}</Option>
+									const { id, name, title} = value;
+									return <Option key={key} value={id}>{name}({title})</Option>
 								})
 							}
 				    </Select>
