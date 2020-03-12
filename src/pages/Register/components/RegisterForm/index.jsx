@@ -247,8 +247,21 @@ class RegisterForm extends Component {
 		})
 		myFetchPost(_url, _data, (data) => {
 			console.log(data);
-		}, 'POST')
-		console.log(_data);
+			const { success, errCode, sessionID } = data;
+			if (success === 1) {
+				localStorage.setItem('isLogin', true);
+				localStorage.setItem('loginType', loginType);
+				localStorage.setItem('sessionID', sessionID);
+				// window.location.href = `${window.location.origin}/${loginType}`;
+			} else {
+				console.log('注册失败');
+				console.log(errCode)
+				this.setState({
+					isCircle: false,
+					errorMessage: errCode
+				})
+			}
+		}, 'POST');
 	}
 
 	handleSelect (event, selectKey) {

@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { DatePicker } from 'antd';
 import moment from 'moment';
 
-import { myFetchGet } from '../../../pub_funcs/myFetch.jsx'
+import { myFetchPost } from '../../../pub_funcs/myFetch.jsx'
 import Button from '../../../components/Button/index.jsx';
 import './style.css';
 
@@ -62,7 +62,7 @@ class OrderExam extends Component {
 			data: _data,
 			isLoading: true
 		});
-		myFetchGet(orderExamURL, _data, (data) => {
+		myFetchPost(orderExamURL, _data, (data) => {
 			const { success, errCode } = data;
 			if (success === 1) {
 				alert('预约成功');

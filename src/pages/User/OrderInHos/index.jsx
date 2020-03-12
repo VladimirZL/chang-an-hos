@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { Select, DatePicker  } from 'antd';
 import moment from 'moment';
 
-import { myFetchGet } from '../../../pub_funcs/myFetch.jsx'
+import { myFetchPost } from '../../../pub_funcs/myFetch.jsx'
 import Button from '../../../components/Button/index.jsx';
 import './style.css';
 
@@ -71,7 +71,8 @@ class OrderInHos extends Component {
 			data: _data,
 			isLoading: true
 		});
-		myFetchGet(orderInHosURL, _data, (data) => {
+		myFetchPost(orderInHosURL, _data, (data) => {
+			console.log(data);
 			const { success, errCode } = data;
 			if (success === 1) {
 				alert('预约成功');
