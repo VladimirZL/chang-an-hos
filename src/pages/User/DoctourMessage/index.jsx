@@ -24,26 +24,7 @@ const columns = [{
     key: 'title',
   },
 ]
-// const data = [{
-//     key: '1',
-//     name: 'John Brown',
-//     sex: '男',
-//     department: '儿科',
-//     title: '教授',
-//   }, {
-//     key: '2',
-//     sex: '男',
-//     name: 'Jim Green',
-//     department: '外科',
-//     title: '教授',
-//   }, {
-//     key: '3',
-//     sex: '男',
-//     name: 'Joe Black',
-//     department: '内科',
-//     title: '副教授',
-//   },
-// ];
+
 
 const departmentChange = {
   '1': '儿科',

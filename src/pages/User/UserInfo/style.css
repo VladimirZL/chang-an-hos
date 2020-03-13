@@ -1,0 +1,55 @@
+.user-userInfo-box {
+	margin: 0 auto;
+  padding: 10px 100px;
+}
+
+.user-userInfo-h2 {
+	letter-spacing: 2px;
+}
+
+.user-userInfo-info {
+
+}
+
+.user-userInfo-info-item {
+	height: 30px;
+}
+
+.user-userInfo-info-item span {
+	font-size: 18px;
+}
+
+.user-userInfo-info-item-key {
+	display: inline-block;
+	width: 100px;
+}
+
+.user-userInfo-order {
+	margin-top: 20px;
+}
+
+.user-userInfo-order-box {
+	display: flex;
+}
+
+.user-userInfo-order-item {
+	width: 300px;
+	/*height: 200px;*/
+	/*background-color: black;*/
+	border: 1px solid black;
+	margin-right: 20px; 
+}
+
+.user-userInfo-order-item-title {
+	width: 100%;
+	padding: 10px;
+}
+
+.user-userInfo-order-item-title span {
+	font-size: 17px;
+}
+
+.user-userInfo-order-item-content {
+	width: 100%;
+	padding: 10px;
+}

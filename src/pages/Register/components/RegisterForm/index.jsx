@@ -253,7 +253,7 @@ class RegisterForm extends Component {
 				localStorage.setItem('isLogin', true);
 				localStorage.setItem('loginType', formType);
 				localStorage.setItem('sessionID', sessionID);
-				// window.location.href = `${window.location.origin}/${loginType}`;
+				window.location.href = `${window.location.origin}/${formType}`;
 			} else {
 				console.log('注册失败');
 				console.log(errCode)
