@@ -67,7 +67,7 @@ class UserInfo extends Component {
 	componentWillMount () {
 		let _session = localStorage.getItem('sessionID');
 		// myFetchPost(orderRegisterDataURL)
-		// this.getUserInofURL(getUserInofURL, _session);
+		this.getUserInofURL(getUserInofURL, _session);
 		this.getOrderRegisterData(orderRegisterDataURL, _session);
 		this.getorderInHosDataData(orderInHosDataURL, _session);
 		this.getOrderExamData(orderExamDataURL, _session);
