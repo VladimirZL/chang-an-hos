@@ -171,16 +171,16 @@ class UserInfo extends Component {
 									!orderRegisterData.isSuccess ? <div className="user-userInfo-order-item-content">无</div> :
 									<div>
 										<div className="user-userInfo-order-item-content">
-											<span>挂号编号:</span><span>orderRegisterData.registerId</span>
+											<span>挂号编号:</span><span>{orderRegisterData.registerId}</span>
 										</div>
 										<div className="user-userInfo-order-item-content">
-											<span>科室:</span><span>orderRegisterData.department</span>
+											<span>科室:</span><span>{orderRegisterData.department}</span>
 										</div>
 										<div className="user-userInfo-order-item-content">
-											<span>医生姓名:</span><span>orderRegisterData.doctorName</span>
+											<span>医生姓名:</span><span>{orderRegisterData.doctorName}</span>
 										</div>
 										<div className="user-userInfo-order-item-content">
-											<span>挂号时间:</span><span>orderRegisterData.date</span>
+											<span>挂号时间:</span><span>{orderRegisterData.date}</span>
 										</div>
 									</div>
 								}
@@ -191,10 +191,10 @@ class UserInfo extends Component {
 									!orderInHosData.isSuccess ? <div className="user-userInfo-order-item-content">无</div> :
 									<div>
 										<div className="user-userInfo-order-item-content">
-											<span>科室:</span><span>orderInHosData.department</span>
+											<span>科室:</span><span>{orderInHosData.department}</span>
 										</div>
 										<div className="user-userInfo-order-item-content">
-											<span>住院时间:</span><span>orderInHosData.date</span>
+											<span>住院时间:</span><span>{orderInHosData.date}</span>
 										</div>
 									</div>
 								}
@@ -205,10 +205,10 @@ class UserInfo extends Component {
 									!orderExamData.isSuccess ? <div className="user-userInfo-order-item-content">无</div> :
 									<div>
 										<div className="user-userInfo-order-item-content">
-											<span>体检类型:</span><span>orderExamData.examType</span>
+											<span>体检类型:</span><span>{orderExamData.examType}</span>
 										</div>
 										<div className="user-userInfo-order-item-content">
-											<span>体检时间:</span><span>orderExamData.date</span>
+											<span>体检时间:</span><span>{orderExamData.date}</span>
 										</div>
 									</div>
 								}
