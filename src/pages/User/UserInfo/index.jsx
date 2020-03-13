@@ -25,27 +25,27 @@ class UserInfo extends Component {
 	constructor (props) {
 		super(props);
 		this.state = {
-			myInfoList: [],
-			indexInfoList: [{
+			// myInfoList: [],
+			myInfoList: [{
 				infoText: '姓名',
 				infoKey:'name',
-				value: '赵尔语',
+				infoValue: '',
 			}, {
 				infoText: '性别',
 				infoKey:'sex',
-				value: '难',
+				infoValue: '',
 			}, {
 				infoText: '年龄',
 				infoKey:'age',
-				value: '18',
+				infoValue: '',
 			}, {
 				infoText: '保险类型',
 				infoKey:'healthCareType',
-				value: '儿科',
+				infoValue: '',
 			}, {
 				infoText: '过敏史',
 				infoKey:'allergy',
-				value: '无',
+				infoValue: '',
 			}],
 			orderRegisterData: {
 				isSuccess: false
@@ -59,10 +59,6 @@ class UserInfo extends Component {
 		}
 	}
 
-	// data = {
-	// 	succees:,
-
-	// }
 
 	componentWillMount () {
 		let _session = localStorage.getItem('sessionID');
@@ -74,27 +70,18 @@ class UserInfo extends Component {
 	} 
 
 	getUserInofURL (url, session) {
-		const {indexInfoList} = this.state;
-		let _dataArr = [];
+		let _infoList = this.state.myInfoList;
 		myFetchPost(url, {sessionID: session}, (data) => {
 			const { success, eccCode, info} = data;
 			if (success === 1) {
-				const { name, sex, age, healthCareType, allergy } = info;
-				let _arr = ['name', 'sex', 'age', 'healthCareType', 'allergy'];
-				_arr.forEach((value, key) => {
-					let _data = {};
-					_data.infoText = value;
-					_data.infoKey = value;
-					_data.infoValue = info[value];
-					_dataArr.push(_data);
-				});
+				_infoList.forEach((value, key) => {
+					value.infoValue = info[value.infoKey];
+				})
 				this.setState({
-					myInfoList: _dataArr
+					myInfoList: _infoList
 				});
 			} else {
-				this.setState({
-					myInfoList: indexInfoList
-				});
+				alert('请求个人信息出错');
 			}
 		})
 	}
@@ -143,6 +130,7 @@ class UserInfo extends Component {
 			_data = data
 			const { success, errCode, year, month, day, examType } = data;
 			if (success === 1) {
+				console.log('成功');
 				_data.examType = examTypeChange[String(examType)];
 				_data.date = `${year}-${month}-${day}`;
 				_data.isSuccess = true;
@@ -152,6 +140,7 @@ class UserInfo extends Component {
 			this.setState({
 				orderExamData: _data
 			});
+			console.log(this.state.orderExamData);
 		})
 	}
 
@@ -164,10 +153,10 @@ class UserInfo extends Component {
 					<div className="user-userInfo-info">
 						{
 							myInfoList.map((_value, _key) => {
-								const { infoText, value } = _value;
+								const { infoText, infoValue } = _value;
 								return (
 									<div key={_key} className="user-userInfo-info-item">
-										<span className="user-userInfo-info-item-key">{ infoText } :</span><span>{ value }</span>
+										<span className="user-userInfo-info-item-key">{ infoText } :</span><span>{ infoValue }</span>
 									</div>
 								)
 							})

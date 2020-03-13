@@ -31,6 +31,12 @@ const departmentChange = {
   '2': '外科',
   '3': '内科'
 }
+
+const sexChange = {
+  '1': '男',
+  '2': '女'
+}
+
 class DoctourMessage extends Component {
   constructor (props) {
     super(props);
@@ -48,7 +54,7 @@ class DoctourMessage extends Component {
           let _info = {
             key: key,
             name: name,
-            sex: sex,
+            sex: sexChange[String(sex)],
             department: departmentChange[String(department)],
             title: title
           }

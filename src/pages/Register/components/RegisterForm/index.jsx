@@ -29,8 +29,8 @@ class RegisterForm extends Component {
 					type: 'text',
 					placeholder: '手机号',
 					maxLength: '11',
-					// regex: /^1[3456789]\d{9}$/,
-					regex: /([\s\S]*)/,
+					regex: /^1[3456789]\d{9}$/,
+					// regex: /([\s\S]*)/,
 					inputValue: '',
 					isTest: true,
 				}, {
@@ -71,8 +71,8 @@ class RegisterForm extends Component {
 					type: 'text',
 					placeholder: '手机号',
 					maxLength: '11',
-					// regex: /^1[3456789]\d{9}$/,
-					regex: /([\s\S]*)/,
+					regex: /^1[3456789]\d{9}$/,
+					// regex: /([\s\S]*)/,
 					inputValue: '',
 					isTest: true,
 				}, {

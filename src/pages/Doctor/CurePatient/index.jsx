@@ -3,10 +3,10 @@ import { Input } from 'antd';
 import './style.css';
 
 import Button from '../../../components/Button/index.jsx';
-
+import { myFetchPost } from '../../../pub_funcs/myFetch.jsx'
 
 const { TextArea } = Input;
-
+const patoentMessageURL = 'http://localhost:8080/springMvcDemo1/work/doctor/getPatientLst';
 
 class CurePatient extends Component {
 
@@ -16,30 +16,46 @@ class CurePatient extends Component {
 			infoList: [{
 				infoText: '姓名',
 				infoKey:'name',
-				value: '赵尔语',
+				infoValue: '',
 			}, {
 				infoText: '性别',
 				infoKey:'sex',
-				value: '难',
+				infoValue: '',
 			}, {
 				infoText: '年龄',
 				infoKey:'age',
-				value: '18',
+				infoValue: '',
 			}, {
 				infoText: '过敏史',
-				infoKey:'history',
-				value: '无',
+				infoKey:'allergy',
+				infoValue: '',
 			}, {
 				infoText: '保险类型',
-				infoKey:'insurance',
-				value: '社会保险',
+				infoKey:'healthCareType',
+				infoValue: '',
 			}],
 			isLoading: false
 		}
 	}
 
 	componentWillMount () {
-
+		let _infoList = this.state.infoList;
+		let _session = localStorage.getItem('sessionID');
+    myFetchPost(patoentMessageURL, {sIDString: _session}, (data) => {
+      const { success, patientInfoLst } = data;
+      if (success === 1) {
+      	if (patientInfoLst.length === 0) {
+      		alert('无待诊患者');
+      		return;
+      	}
+        _infoList.forEach((value, key) => {
+        	value.infoValue = patientInfoLst[0][value.infoKey]
+        })
+        this.setState({
+          infoList: _infoList
+        });
+      }
+    }) 
 	}
 
 	handleSubmit () {
@@ -58,10 +74,10 @@ class CurePatient extends Component {
 					<div className="doctor-curePatient-info">
 						{
 							infoList.map((_value, _key) => {
-								const { infoText, value } = _value;
+								const { infoText, infoValue } = _value;
 								return (
 									<div key={_key} className="doctor-curePatient-info-item">
-										<span className="doctor-curePatient-info-item-key">{ infoText } :</span><span>{ value }</span>
+										<span className="doctor-curePatient-info-item-key">{ infoText } :</span><span>{ infoValue }</span>
 									</div>
 								)
 							})

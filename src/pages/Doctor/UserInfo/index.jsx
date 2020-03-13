@@ -1,34 +1,62 @@
 import React, {Component} from 'react';
 import './style.css';
 
+import { myFetchPost } from '../../../pub_funcs/myFetch.jsx'
+
+const getUserInofURL = 'http://localhost:8080/springMvcDemo1/user/getInfo';
+
+const departmentChange = {
+  '1': '儿科',
+  '2': '外科',
+  '3': '内科'
+}
 
 class DoctorInfo extends Component {
 
 	constructor (props) {
 		super(props);
 		this.state = {
+			// myInfoList: [],
 			myInfoList: [{
 				infoText: '姓名',
 				infoKey:'name',
-				value: '赵尔语',
+				infoValue: '',
 			}, {
 				infoText: '性别',
 				infoKey:'sex',
-				value: '难',
+				infoValue: '',
 			}, {
 				infoText: '年龄',
 				infoKey:'age',
-				value: '18',
+				infoValue: '',
 			}, {
 				infoText: '科室',
-				infoKey:'department',
-				value: '儿科',
+				infoKey:'departmentID',
+				infoValue: '',
 			}, {
 				infoText: '职称',
 				infoKey:'title',
-				value: '教授',
+				infoValue: '',
 			}]
 		}
+	}
+
+	componentWillMount () {
+		let _infoList = this.state.myInfoList;
+		let _session = localStorage.getItem('sessionID');
+		myFetchPost(getUserInofURL, {sessionID: _session}, (data) => {
+			const { success, eccCode, info} = data;
+			if (success === 1) {
+				_infoList.forEach((value, key) => {
+					value.infoValue = info[value.infoKey];
+				})
+				this.setState({
+					myInfoList: _infoList
+				});
+			} else {
+				alert('请求个人信息出错');
+			}
+		})
 	}
 
 	render () {
@@ -40,10 +68,10 @@ class DoctorInfo extends Component {
 					<div className="doctor-doctorInfo-info">
 						{
 							myInfoList.map((_value, _key) => {
-								const { infoText, value } = _value;
+								const { infoText, infoValue } = _value;
 								return (
 									<div key={_key} className="doctor-doctorInfo-info-item">
-										<span className="doctor-doctorInfo-info-item-key">{ infoText } :</span><span>{ value }</span>
+										<span className="doctor-doctorInfo-info-item-key">{ infoText } :</span><span>{ infoValue }</span>
 									</div>
 								)
 							})
