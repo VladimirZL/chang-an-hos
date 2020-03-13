@@ -4,7 +4,10 @@ export function myFetchPost(url, data, cb, method='POST') {
 		// console.log(JSON.stringify(data), method);
 		fetch(url, {
 			body: JSON.stringify(data),
-			method: method
+			method: method,
+			headers: {
+				'Content-Type': 'text/json;utf-8'
+			}
 		}).then(response => {
 			const { status } = response;
 			if (status === 200) 

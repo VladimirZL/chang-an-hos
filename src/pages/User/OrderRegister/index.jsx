@@ -45,7 +45,7 @@ class OrderRegister extends Component {
         docInfoLst.forEach((value, key) => {
           const { name, docUIDstr, title, id } = value;
           let _info = {
-            name: key,
+            name: name,
             title: title,
             // docUIDstr: docUIDstr,
             id: id
