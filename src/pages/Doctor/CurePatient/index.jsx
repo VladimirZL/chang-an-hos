@@ -44,6 +44,8 @@ class CurePatient extends Component {
     myFetchPost(patoentMessageURL, {sIDString: _session}, (data) => {
       const { success, patientInfoLst } = data;
       if (success === 1) {
+      	console.log('成功');
+      	console.log(patientInfoLst);
       	if (patientInfoLst.length === 0) {
       		alert('无待诊患者');
       		return;
